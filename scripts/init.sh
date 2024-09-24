@@ -20,11 +20,7 @@ npm install --global yarn
 
 cd /workspace
 
-bench init \
---version version-15 \
---ignore-exist \
---skip-redis-config-generation \
-frappe-bench
+bench init --frappe-branch version-15 --ignore-exist --skip-redis-config-generation frappe-bench
 
 cd frappe-bench
 
@@ -37,10 +33,7 @@ bench set-redis-socketio-host redis-socketio:6379
 # Remove redis from Procfile
 sed -i '/redis/d' ./Procfile
 
-bench new-site dev.localhost \
---mariadb-root-password 123 \
---admin-password admin \
---no-mariadb-socket
+bench new-site dev.localhost --mariadb-root-password 123 --admin-password admin --no-mariadb-socket
 
 bench get-app erpnext --branch version-15
 bench get-app https://github.com/agritheory/beam --branch version-15
