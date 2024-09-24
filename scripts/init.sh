@@ -16,13 +16,12 @@ nvm alias default 18
 nvm use 18
 echo "nvm use 18" >> ~/.bashrc
 
-npm install --global yarn
-
 cd /workspace
 
 bench init --frappe-branch version-15 --ignore-exist --skip-redis-config-generation frappe-bench
 
 cd frappe-bench
+npm install --global yarn
 
 # Use containers instead of localhost
 bench set-mariadb-host mariadb
