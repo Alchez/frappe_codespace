@@ -17,11 +17,11 @@ nvm use 20
 echo "nvm use 20" >> ~/.bashrc
 
 cd /workspace
+npm install --global yarn
 
 bench init --frappe-branch version-15 --ignore-exist --skip-redis-config-generation frappe-bench
 
 cd frappe-bench
-npm install --global yarn
 
 # Use containers instead of localhost
 bench set-mariadb-host mariadb
