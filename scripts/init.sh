@@ -11,13 +11,14 @@ fi
 rm -rf /workspaces/frappe_codespace/.git
 
 source /home/frappe/.nvm/nvm.sh
-nvm alias default 18
-nvm use 18
+nvm alias default 20
+nvm use 20
 
-echo "nvm use 18" >> ~/.bashrc
+echo "nvm use 20" >> ~/.bashrc
 cd /workspace
 
 bench init \
+--version version-15 \
 --ignore-exist \
 --skip-redis-config-generation \
 frappe-bench
@@ -33,12 +34,15 @@ bench set-redis-socketio-host redis-socketio:6379
 # Remove redis from Procfile
 sed -i '/redis/d' ./Procfile
 
-
 bench new-site dev.localhost \
 --mariadb-root-password 123 \
 --admin-password admin \
 --no-mariadb-socket
 
+bench get-app erpnext --branch version-15
+bench get-app https://github.com/agritheory/beam --branch version-15
+
+bench --site dev.localhost install-app erpnext beam
 bench --site dev.localhost set-config developer_mode 1
 bench --site dev.localhost clear-cache
 bench use dev.localhost
